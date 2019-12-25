@@ -1,7 +1,7 @@
 {
-    "name": "MY_APP_ID",
+    "name": "miti",
     "version": "1.0.0",
-    "description": "MY_APP_DESCRIPTION",
+    "description": "Nepali Calendar App",
     "main": "src/index.tsx",
     "keywords": [],
     "author": "",

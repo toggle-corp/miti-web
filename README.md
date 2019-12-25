@@ -1,3 +1,3 @@
-# MY_APP_NAME
+# Miti
 
-MY_APP_DESCRIPTION
+Nepali Calendar App

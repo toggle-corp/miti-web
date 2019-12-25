@@ -40,7 +40,7 @@ class Navbar extends React.PureComponent<Props> {
                     className={styles.appName}
                     title={process.env.REACT_APP_VERSION}
                 >
-                    MY_APP_NAME
+                    Miti
                 </div>
                 <ListView
                     data={pages}

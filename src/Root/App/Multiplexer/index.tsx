@@ -5,7 +5,7 @@ import { _cs } from '@togglecorp/fujs';
 
 import DangerButton from '#rsca/Button/DangerButton';
 
-import Navbar from '#components/Navbar';
+// import Navbar from '#components/Navbar';
 import errorBound from '#components/errorBound';
 import helmetify from '#components/helmetify';
 
@@ -115,7 +115,7 @@ class Multiplexer extends React.PureComponent<Props, State> {
 
         return (
             <div className={_cs(styles.multiplexer, className, 'multiplexer')}>
-                <Navbar className={styles.navbar} />
+                {/* <Navbar className={styles.navbar} /> */}
                 {pending ? (
                     <div className={styles.loadingAnimationContainer}>
                         <LoadingAnimation message="Loading resources" />

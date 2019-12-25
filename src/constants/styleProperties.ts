@@ -1,6 +1,6 @@
 const styleProperties = {
     // fontFamilySansSerif: 'Roboto',
-    // colorPrimary: 'MY_APP_COLOR',
+    // colorPrimary: '#03a8f3',
     // colorAccent: '',
 };
 

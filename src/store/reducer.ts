@@ -6,7 +6,7 @@ import routeReducer from './atom/route/reducer';
 const rootReducer = persistCombineReducers(
     {
         blacklist: ['route'],
-        key: 'MY_APP_ID',
+        key: 'miti',
         version: 1,
         storage: localforage,
     },
