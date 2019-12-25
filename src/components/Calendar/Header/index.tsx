@@ -1,8 +1,8 @@
 import React, { useCallback, useMemo } from 'react';
 import { _cs } from '@togglecorp/fujs';
 import Button from '#rsca/Button';
-
 import Icon from '#rscg/Icon';
+
 import {
     NepaliDate,
     EnglishDate,
@@ -100,6 +100,7 @@ const Header: React.FC<PropTypes> = ({
                 <Button
                     className={styles.left}
                     onClick={goToPrev}
+                    transparent
                 >
                     <Icon name="chevronLeft" />
                 </Button>
@@ -118,6 +119,7 @@ const Header: React.FC<PropTypes> = ({
                 <Button
                     className={styles.right}
                     onClick={goToNext}
+                    transparent
                 >
                     <Icon name="chevronRight" />
                 </Button>

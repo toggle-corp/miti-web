@@ -1,4 +1,39 @@
 .calendar {
     display: flex;
     flex-direction: column;
+    height: 100%;
+    background-color: #fff;
+
+    .nav-bar {
+        height: 48px;
+    }
+
+    .header {
+        height: 94px;
+    }
+
+    .week-names {
+        height: 72px;
+    }
+
+    .dates-grid {
+        height: calc(100% - 94px - 72px - 48px);
+    }
+}
+
+
+@media (max-width: 640px) {
+    .calendar {
+        .header {
+            height: 64px;
+        }
+
+        .week-names {
+            height: 32px;
+        }
+
+        .dates-grid {
+            height: calc(100% - 64px - 32px - 48px);
+        }
+    }
 }

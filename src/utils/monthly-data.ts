@@ -1,13 +1,21 @@
 import tithiDataAll from '../assets/dump.json';
-import { NepaliDate, EnglishDate, NEPALI_DAYS_PER_MONTH, START_NEPALI_YEAR } from './date-utils';
+
+import {
+    NepaliDate,
+    EnglishDate,
+    NEPALI_DAYS_PER_MONTH,
+    START_NEPALI_YEAR,
+} from './date-utils';
+import { translateNum } from './lang';
 
 export interface DateInfo {
     key: string;
-    nepaliDate: number | undefined;
-    englishDate: number | undefined;
-    tithi: string | undefined;
-    event: string | undefined;
-    holiday: boolean | undefined;
+    nepaliDate?: number;
+    englishDate?: number;
+    tithi?: string;
+    event?: string;
+    holiday?: boolean;
+    title?: string;
 }
 
 const getMonthlyData = (year: number, month: number): DateInfo[][] => {
@@ -39,12 +47,21 @@ const getMonthlyData = (year: number, month: number): DateInfo[][] => {
                 const extra = tithiData && ({
                     tithi: tithiData[date - 1].tithi,
                     event: tithiData[date - 1].extra.event,
-                    holiday: tithiData[date - 1].extra.holiday,
+                    holiday: (j === 6) || tithiData[date - 1].extra.holiday,
                 });
+                let title = `${translateNum(year)}/${translateNum(month)}/${translateNum(date)}`;
+                if (extra.tithi) {
+                    title += `\n${extra.tithi}`;
+                }
+                if (extra.event) {
+                    title += `\n${extra.event}`;
+                }
+
                 weeklyData.push({
                     key: `${j}`,
                     nepaliDate: date,
                     englishDate: tmpDate.getDate(),
+                    title,
                     ...extra,
                 });
                 date += 1;

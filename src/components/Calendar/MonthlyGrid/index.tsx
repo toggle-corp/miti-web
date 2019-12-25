@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useCallback } from 'react';
 import { _cs } from '@togglecorp/fujs';
 
 import ListView from '#rscv/List/ListView';
@@ -9,22 +9,35 @@ import { translateNum } from '#utils/lang';
 import styles from './styles.scss';
 
 
-const DateElement: React.FC<{ dateInfo: DateInfo }> = ({ dateInfo }: { dateInfo: DateInfo }) => (
-    <div className={_cs(styles.dateElement, dateInfo.holiday ? styles.holiday : '')}>
-        <div className={styles.nepaliDate}>
-            {translateNum(dateInfo.nepaliDate)}
+const DateElement: React.FC<{ dateInfo: DateInfo }> = ({ dateInfo }: { dateInfo: DateInfo }) => {
+    const showDateInfo = useCallback(() => {
+        alert(dateInfo.title);
+    }, [dateInfo]);
+
+    return (
+        <div
+            className={_cs(styles.dateElement, dateInfo.holiday ? styles.holiday : '')}
+            title={dateInfo.title}
+            onClick={showDateInfo}
+            role="button"
+            tabIndex={0}
+            onKeyPress={showDateInfo}
+        >
+            <div className={styles.nepaliDate}>
+                {dateInfo.nepaliDate && translateNum(dateInfo.nepaliDate)}
+            </div>
+            <div className={styles.englishDate}>
+                {dateInfo.englishDate}
+            </div>
+            <div className={styles.tithi}>
+                {dateInfo.tithi}
+            </div>
+            <div className={styles.event}>
+                {dateInfo.event}
+            </div>
         </div>
-        <div className={styles.englishDate}>
-            {dateInfo.englishDate}
-        </div>
-        <div className={styles.tithi}>
-            {dateInfo.tithi}
-        </div>
-        <div className={styles.event}>
-            {dateInfo.event}
-        </div>
-    </div>
-);
+    );
+};
 
 const getDateInfoKey = (dateInfo: DateInfo) => dateInfo.key;
 const getDateInfoParams = (_key: string, dateInfo: DateInfo) => ({ dateInfo });

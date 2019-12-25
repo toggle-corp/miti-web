@@ -7,6 +7,7 @@ import styles from './styles.scss';
 interface WeekName {
     key: string;
     value: string;
+    holiday?: boolean;
 }
 
 const weekNames = [
@@ -16,16 +17,16 @@ const weekNames = [
     { key: '3', value: 'बुध' },
     { key: '4', value: 'बिही' },
     { key: '5', value: 'शुक्र' },
-    { key: '6', value: 'शनि' },
+    { key: '6', value: 'शनि', holiday: true },
 ];
 
-const WeekName: React.FC<{ name: string }> = ({ name }: { name: string }) => (
-    <div className={styles.weekName}>
-        {name}
+const WeekName: React.FC<WeekName> = ({ value, holiday }: WeekName) => (
+    <div className={_cs(styles.weekName, holiday ? styles.holiday : '')}>
+        {value}
     </div>
 );
 
-const getWeekNameParams = (_key: string, data: WeekName) => ({ name: data.value });
+const getWeekNameParams = (_key: string, data: WeekName) => data;
 const getWeekNameKey = (data: WeekName) => data.key;
 
 const WeekNames: React.FC<{ className?: string }> = ({ className }: { className? : string}) => (

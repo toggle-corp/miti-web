@@ -7,9 +7,7 @@ import Calendar from '#components/Calendar';
 
 
 const HomePage: React.FC = () => (
-    <div>
-        <Calendar />
-    </div>
+    <Calendar />
 );
 
 export default HomePage;

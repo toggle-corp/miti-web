@@ -1,0 +1,47 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+
+    .middle {
+        text-align: center;
+
+        .nepali-month {
+            font-size: 18px;
+        }
+
+        .english-month {
+            font-size: 16px;
+        }
+    }
+
+    .left {
+        text-align: center;
+        height: 100%;
+        width: 64px;
+        font-size: 16px;
+    }
+
+    .right {
+        text-align: center;
+        height: 100%;
+        width: 64px;
+        font-size: 16px;
+    }
+}
+
+
+@media (max-width: 640px) {
+    .header {
+        .middle {
+            .nepali-month {
+                font-size: 14px;
+            }
+
+            .english-month {
+                font-size: 12px;
+            }
+        }
+    }
+}
