@@ -1,0 +1,42 @@
+{
+  "icons": [
+    {
+      "src": "/assets/icons/icon_512x512.91886734c5a1f7adfb1a1cd071e930ae.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icons/icon_384x384.6a6f46d3c2c5fca2671d6924fd5421b4.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icons/icon_256x256.00ea7cdf1113ad597fb6e27fd4644d90.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icons/icon_192x192.3474c71f39501a40187cabb2e0639b92.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icons/icon_128x128.5aa96eebaa68461791e21a06bf6c1106.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icons/icon_96x96.b3b8135d3a511e481e659f186ffa815c.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    }
+  ],
+  "name": "miti",
+  "short_name": "Miti",
+  "orientation": "portrait",
+  "display": "standalone",
+  "start_url": "/",
+  "description": "Nepali Calendar App",
+  "background_color": "#ffffff",
+  "scope": "/"
+}
