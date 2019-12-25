@@ -1,0 +1,32 @@
+os: linux
+language: generic
+
+services:
+  - docker
+
+cache:
+  directories:
+    - node_modules
+
+before_install:
+  - mkdir -p src/vendor
+  - git clone https://github.com/toggle-corp/react-store.git --branch=${REACT_STORE_BRANCH:-develop} src/vendor/react-store
+  - git --git-dir=src/vendor/react-store/.git --no-pager show --pretty=fuller --quiet
+  - docker pull node:8.16.0-alpine
+
+jobs:
+  include:
+    - stage: Deploy (GitHub Pages Release)
+      script:
+        - docker run --rm -it -v $(pwd):/code node:8.16.0-alpine sh -c 'apk add git && cd code && yarn install && yarn build'
+        - sudo chown $USER:$USER -R ./build/ && ls -Rla ./build/
+        - cp ./build/index.html ./build/404.html
+        - echo ${CUSTOM_DOMAIN:-miti.togglecorp.com} > ./build/CNAME
+      deploy:
+        provider: pages
+        skip_cleanup: true
+        token: $GITHUB_TOKEN
+        keep_history: true
+        local_dir: ./build
+        on:
+          branch: ${DEPLOY_BRANCH:-develop}
