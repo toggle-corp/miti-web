@@ -14,9 +14,15 @@ const DateElement: React.FC<{ dateInfo: DateInfo }> = ({ dateInfo }: { dateInfo:
         alert(dateInfo.title);
     }, [dateInfo]);
 
+    const className = _cs(
+        styles.dateElement,
+        dateInfo.holiday ? styles.holiday : '',
+        dateInfo.isToday ? styles.today : '',
+    );
+
     return (
         <div
-            className={_cs(styles.dateElement, dateInfo.holiday ? styles.holiday : '')}
+            className={className}
             title={dateInfo.title}
             onClick={showDateInfo}
             role="button"

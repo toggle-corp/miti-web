@@ -165,10 +165,18 @@ export class EnglishDate extends BaseDate {
     }
 
     public getJulianDate(): number {
-        const a = (14 - this.month) / 12;
+        const a = Math.floor((14 - this.month) / 12);
         const y = this.year + 4800 - a;
         const m = this.month + 12 * a - 3;
-        return this.day + (153 * m + 2) / 5 + 365 * y + y / 4 - y / 100 + y / 400 - 32045;
+        return (
+            this.day
+            + Math.floor((153 * m + 2) / 5)
+            + 365 * y
+            + Math.floor(y / 4)
+            - Math.floor(y / 100)
+            + Math.floor(y / 400)
+            - 32045
+        );
     }
 
     public toNepaliDate(): NepaliDate {

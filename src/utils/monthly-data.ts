@@ -16,9 +16,13 @@ export interface DateInfo {
     event?: string;
     holiday?: boolean;
     title?: string;
+    isToday?: boolean;
 }
 
 const getMonthlyData = (year: number, month: number): DateInfo[][] => {
+    const todayDate = EnglishDate.fromNativeDate(new Date()).toNepaliDate();
+    const isTodayMonth = (year === todayDate.year && month === todayDate.month);
+
     const startNepaliDate = new NepaliDate(year, month, 1);
     const startEnglishDate = EnglishDate.fromNepaliDate(startNepaliDate);
 
@@ -62,6 +66,7 @@ const getMonthlyData = (year: number, month: number): DateInfo[][] => {
                     nepaliDate: date,
                     englishDate: tmpDate.getDate(),
                     title,
+                    isToday: (isTodayMonth && date === todayDate.day),
                     ...extra,
                 });
                 date += 1;
