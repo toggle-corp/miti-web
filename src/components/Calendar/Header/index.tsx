@@ -50,7 +50,7 @@ const Header: React.FC<PropTypes> = ({
     // Go to previous month.
     const goToPrev = useCallback(() => {
         const newMonthId = monthId - 1;
-        const year = Math.floor(monthId / 12);
+        const year = Math.floor(newMonthId / 12);
         const month = (newMonthId % 12) + 1;
 
         setYearAndMonth({ year, month });
@@ -59,7 +59,7 @@ const Header: React.FC<PropTypes> = ({
     // Go to next month.
     const goToNext = useCallback(() => {
         const newMonthId = monthId + 1;
-        const year = Math.floor(monthId / 12);
+        const year = Math.floor(newMonthId / 12);
         const month = (newMonthId % 12) + 1;
 
         setYearAndMonth({ year, month });
