@@ -150,7 +150,7 @@
         "@togglecorp/react-rest-request": "^2.5.0-beta.2",
         "core-js": "3",
         "hoist-non-react-statics": "^3.3.0",
-        "immer": "^3.2.0",
+        "immer": "^8.0.1",
         "localforage": "^1.7.3",
         "memoize-one": "^5.0.5",
         "prop-types": "^15.7.2",
