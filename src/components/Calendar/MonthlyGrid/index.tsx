@@ -1,12 +1,11 @@
 import React, { useMemo, useCallback } from 'react';
 import { _cs } from '@togglecorp/fujs';
 
-import ListView from '#rscv/List/ListView';
 import getMonthlyData, { DateInfo } from '#utils/monthly-data';
 import { YearAndMonth } from '#utils/date-utils';
 import { translateNum } from '#utils/lang';
 
-import styles from './styles.scss';
+import styles from './styles.module.css';
 
 
 const DateElement: React.FC<{ dateInfo: DateInfo }> = ({ dateInfo }: { dateInfo: DateInfo }) => {
@@ -45,24 +44,13 @@ const DateElement: React.FC<{ dateInfo: DateInfo }> = ({ dateInfo }: { dateInfo:
     );
 };
 
-const getDateInfoKey = (dateInfo: DateInfo) => dateInfo.key;
-const getDateInfoParams = (_key: string, dateInfo: DateInfo) => ({ dateInfo });
-
 const WeeklyRow: React.FC<{ dates: DateInfo[] }> = ({ dates }: { dates: DateInfo[] }) => (
-    <ListView
-        className={styles.week}
-        data={dates}
-        renderer={DateElement}
-        rendererParams={getDateInfoParams}
-        keySelector={getDateInfoKey}
-    />
+    <div className={styles.week}>
+        {dates.map(
+            (date) => <DateElement key={date.key} dateInfo={date} />
+        )}
+    </div>
 );
-
-const getWeeklyRowKey = (_weeklyData: DateInfo[], index: number) => `${index}`;
-const getWeeklyRowParams = (_key: string, weeklyData: DateInfo[]) => ({
-    dates: weeklyData,
-});
-
 
 interface PropTypes {
     className?: string;
@@ -76,13 +64,14 @@ const MonthlyGrid: React.FC<PropTypes> = ({ className, yearAndMonth }: PropTypes
     );
 
     return (
-        <ListView
-            className={_cs(className, styles.datesGrid)}
-            data={monthlyData}
-            renderer={WeeklyRow}
-            rendererParams={getWeeklyRowParams}
-            keySelector={getWeeklyRowKey}
-        />
+        <div className={_cs(className, styles.datesGrid)}>
+            {monthlyData.map((data, i) => (
+                <WeeklyRow
+                    key={i}
+                    dates={data}
+                />
+            ))}
+        </div>
     );
 };
 

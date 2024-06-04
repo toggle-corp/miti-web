@@ -1,45 +1,36 @@
 {
-  "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
-    "moduleResolution": "node",
-    "allowJs": true,
-    "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true,
-    "noEmit": true,
-    "strict": true,
-    "isolatedModules": true,
-    "esModuleInterop": true,
-    "experimentalDecorators": true,
-    "jsx": "react",
-    "rootDir": "./src",
-    "baseUrl": ".",
-    "paths": {
-        "#components/*": ["./src/components/*"],
-        "#config/*": ["./src/config/*"],
-        "#constants": ["./src/constants"],
-        "#constants/*": ["./src/constants/*"],
-        "#notify": ["./src/notify"],
-        "#actionCreators": ["./src/store/actionCreators"],
-        "#selectors": ["./src/store/selectors"],
-        "#request": ["./src/request"],
-        "#resources/*": ["./src/resources/*"],
-        "#schema": ["./src/schema"],
-        "#store": ["./src/store"],
-        "#store/*": ["./src/store/*"],
-        "#ts": ["./src/ts"],
-        "#utils/*": ["./src/utils/*"],
-        "#rsca/*": ["./src/vendor/react-store/components/Action/*"],
-        "#rscg/*": ["./src/vendor/react-store/components/General/*"],
-        "#rsci/*": ["./src/vendor/react-store/components/Input/*"],
-        "#rscv/*": ["./src/vendor/react-store/components/View/*"],
-        "#rscz/*": ["./src/vendor/react-store/components/Visualization/*"],
-        "#rsk/*": ["./src/vendor/react-store/constants/*"],
-        "#rsu/*": ["./src/vendor/react-store/utils/*"],
-        "#views/*": ["./src/views/*"]
-    }
-  },
-  "include": [
-    "src"
-  ]
+    "compilerOptions": {
+        "paths": {
+            "#assets/*": ["./src/assets/*"],
+            "#components/*": ["./src/components/*"],
+            "#config": ["./src/config"],
+            "#contexts/*": ["./src/contexts/*"],
+            "#hooks/*": ["./src/hooks/*"],
+            "#utils/*": ["./src/utils/*"],
+            "#views/*": ["./src/views/*"],
+            "#routes": ["./src/App/routes"]
+        },
+
+        "target": "ESNext",
+        "lib": ["DOM", "DOM.Iterable", "ESNext"],
+        "module": "ESNext",
+        "skipLibCheck": true,
+
+        /* Bundler mode */
+        "moduleResolution": "bundler",
+        "allowImportingTsExtensions": true,
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "noEmit": true,
+        "jsx": "react-jsx",
+
+        /* Linting */
+        "strict": true,
+        "types": ["vite-plugin-svgr/client"],
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noFallthroughCasesInSwitch": true
+    },
+    "include": ["src"],
+    "references": [{ "path": "./tsconfig.node.json" }]
 }

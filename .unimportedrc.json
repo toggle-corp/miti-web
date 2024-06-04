@@ -1,0 +1,32 @@
+{
+    "entry": ["./src/index.tsx"],
+    "ignorePatterns": ["**/node_modules/**", "build/**", "**/generated/**"],
+    "ignoreUnimported": ["**/*.d.ts", "**/*.test.*", "**/generated/**"],
+    "ignoreUnused": [
+        "@apollo/client",
+        "@graphql-codegen/introspection",
+        "@graphql-codegen/typescript-operations",
+        "patch-package",
+        "@sentry/react"
+    ],
+    "ignoreUnresolved": [
+        [
+            "@graphql-typed-document-node/core",
+            [
+                "generated/types/graphql.ts"
+            ]
+        ]
+    ],
+    "extensions": [".ts", ".js", ".tsx", ".jsx"],
+    "aliases": {
+        "#generated/*": ["./generated/*"],
+        "#assets/*": ["./src/assets/*"],
+        "#components/*": ["./src/components/*"],
+        "#config": ["./src/config"],
+        "#contexts/*": ["./src/contexts/*"],
+        "#hooks/*": ["./src/hooks/*"],
+        "#utils/*": ["./src/utils/*"],
+        "#views/*": ["./src/views/*"],
+        "#routes": ["./src/App/routes"]
+    }
+}

@@ -1,8 +1,7 @@
 import React from 'react';
 import { _cs } from '@togglecorp/fujs';
-import ListView from '#rscv/List/ListView';
 
-import styles from './styles.scss';
+import styles from './styles.module.css';
 
 interface WeekName {
     key: string;
@@ -26,17 +25,18 @@ const WeekName: React.FC<WeekName> = ({ value, holiday }: WeekName) => (
     </div>
 );
 
-const getWeekNameParams = (_key: string, data: WeekName) => data;
-const getWeekNameKey = (data: WeekName) => data.key;
-
 const WeekNames: React.FC<{ className?: string }> = ({ className }: { className? : string}) => (
-    <ListView
+    <div
         className={_cs(styles.weekNames, className)}
-        data={weekNames}
-        renderer={WeekName}
-        keySelector={getWeekNameKey}
-        rendererParams={getWeekNameParams}
-    />
+    >
+        {weekNames.map((weekName) => (
+            <WeekName
+                key={weekName.key}
+                value={weekName.value}
+                holiday={weekName.holiday}
+            />
+        ))}
+    </div>
 );
 
 export default WeekNames;

@@ -1,7 +1,26 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import { _cs } from '@togglecorp/fujs';
-import Button from '#rsca/Button';
-import Icon from '#rscg/Icon';
+
+import Button from '#components/Button';
+
+interface IconProps {
+    name: string;
+}
+
+function Icon(props: IconProps) {
+    const { name } = props;
+
+    useEffect(
+        () => {
+            console.info(name);
+        },
+        [],
+    );
+
+    return (
+        <span>*</span>
+    );
+}
 
 import {
     NepaliDate,
@@ -11,7 +30,7 @@ import {
     NUM_YEARS,
 } from '#utils/date-utils';
 import { translateNum } from '#utils/lang';
-import styles from './styles.scss';
+import styles from './styles.module.css';
 
 
 interface PropTypes {
@@ -98,9 +117,9 @@ const Header: React.FC<PropTypes> = ({
         <div className={_cs(className, styles.header)}>
             {showPrevious && (
                 <Button
+                    name={undefined}
                     className={styles.left}
                     onClick={goToPrev}
-                    transparent
                 >
                     <Icon name="chevronLeft" />
                 </Button>
@@ -117,9 +136,9 @@ const Header: React.FC<PropTypes> = ({
 
             {showNext && (
                 <Button
+                    name={undefined}
                     className={styles.right}
                     onClick={goToNext}
-                    transparent
                 >
                     <Icon name="chevronRight" />
                 </Button>

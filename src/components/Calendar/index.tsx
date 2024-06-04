@@ -1,18 +1,19 @@
-import React, { useState, useMemo, useCallback } from 'react';
+import { useState, useMemo } from 'react';
 
 import { EnglishDate, YearAndMonth } from '#utils/date-utils';
 
-import NavBar from '../NavBar';
 import Header from './Header';
 import WeekNames from './WeekNames';
 import MonthlyGrid from './MonthlyGrid';
 
-import styles from './styles.scss';
+import styles from './styles.module.css';
 
 
-const Calendar: React.FC = () => {
+function Calendar() {
     const today = useMemo(() => {
-        const todayDate = EnglishDate.fromNativeDate(new Date()).toNepaliDate();
+        // const todayDate = EnglishDate.fromNativeDate(new Date()).toNepaliDate();
+        const todayDate = EnglishDate.fromNativeDate(new Date(2020, 1, 1)).toNepaliDate();
+
         return {
             year: todayDate.year,
             month: todayDate.month,
@@ -20,13 +21,14 @@ const Calendar: React.FC = () => {
     }, []);
     const [yearAndMonth, setYearAndMonth] = useState<YearAndMonth>(today);
 
+    /*
     const handleTodayButton = useCallback(() => {
         setYearAndMonth(today);
     }, [setYearAndMonth, today]);
+    */
 
     return (
         <div className={styles.calendar}>
-            <NavBar className={styles.navBar} onTodayButton={handleTodayButton} />
             <Header
                 className={styles.header}
                 setYearAndMonth={setYearAndMonth}

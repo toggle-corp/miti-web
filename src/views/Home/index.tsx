@@ -1,13 +1,12 @@
-import React from 'react';
 import Calendar from '#components/Calendar';
-// import { _cs } from '@togglecorp/fujs';
 
-// import Message from '#rscv/Message';
-// import Icon from '#rscg/Icon';
+// eslint-disable-next-line import/prefer-default-export
+export function Component() {
+    return (
+        <div>
+            <Calendar />
+        </div>
+    );
+}
 
-
-const HomePage: React.FC = () => (
-    <Calendar />
-);
-
-export default HomePage;
+Component.displayName = 'Home';
