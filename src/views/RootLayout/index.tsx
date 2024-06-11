@@ -24,15 +24,21 @@ export function Component() {
                     )}
                 />
             )}
+            {/*
             <div className={styles.navbar}>
-                This is navbar
+                <div className={styles.brand}>
+                    मिति
+                </div>
             </div>
+            */}
             <div className={styles.pageContent}>
                 <Outlet />
             </div>
+            {/*
             <div className={styles.footer}>
-                This is footer
+                No एत उति, Only मिति
             </div>
+            */}
         </div>
     );
 }

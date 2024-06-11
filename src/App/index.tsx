@@ -6,6 +6,7 @@ import {
 import RouteContext from '#contexts/route';
 
 import wrappedRoutes, { unwrappedRoutes } from './routes';
+
 const router = createBrowserRouter(unwrappedRoutes);
 
 function App() {

@@ -3,5 +3,5 @@ export const digits = [
 ];
 
 export const translateNum = (num: number): string => (
-    `${num}`.split('').map(m => digits[+m]).join('')
+    `${num}`.split('').map((m) => digits[+m]).join('')
 );

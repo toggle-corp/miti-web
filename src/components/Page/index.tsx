@@ -1,5 +1,5 @@
-import { isDefined, isTruthyString } from "@togglecorp/fujs";
-import { useEffect } from "react";
+import { useEffect } from 'react';
+import { isTruthyString } from '@togglecorp/fujs';
 
 interface Props {
     className?: string;

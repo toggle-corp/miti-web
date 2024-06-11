@@ -14,7 +14,11 @@ module.exports = {
                 "{cssDir}/{cssName}.tsx",
             ],
         },
-        'csstools/value-no-unknown-custom-properties': [true],
+        'csstools/value-no-unknown-custom-properties': [
+            true, {
+                importFrom: ['./src/index.css']
+            },
+        ],
         'selector-pseudo-class-no-unknown': [
             true,
             {

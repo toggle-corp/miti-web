@@ -1,13 +1,6 @@
-import React from 'react';
 import { _cs } from '@togglecorp/fujs';
 
 import styles from './styles.module.css';
-
-interface WeekName {
-    key: string;
-    value: string;
-    holiday?: boolean;
-}
 
 const weekNames = [
     { key: '0', value: 'आइत' },
@@ -19,24 +12,27 @@ const weekNames = [
     { key: '6', value: 'शनि', holiday: true },
 ];
 
-const WeekName: React.FC<WeekName> = ({ value, holiday }: WeekName) => (
-    <div className={_cs(styles.weekName, holiday ? styles.holiday : '')}>
-        {value}
-    </div>
-);
+interface Props {
+    value: string;
+    holiday?: boolean;
+}
 
-const WeekNames: React.FC<{ className?: string }> = ({ className }: { className? : string}) => (
-    <div
-        className={_cs(styles.weekNames, className)}
-    >
-        {weekNames.map((weekName) => (
-            <WeekName
-                key={weekName.key}
-                value={weekName.value}
-                holiday={weekName.holiday}
-            />
-        ))}
-    </div>
-);
+function WeekName({ value, holiday }: Props) {
+    return (
+        <div className={_cs(styles.weekName, holiday ? styles.holiday : '')}>
+            {value}
+        </div>
+    );
+}
+
+function WeekNames() {
+    return weekNames.map((weekName) => (
+        <WeekName
+            key={weekName.key}
+            value={weekName.value}
+            holiday={weekName.holiday}
+        />
+    ));
+}
 
 export default WeekNames;

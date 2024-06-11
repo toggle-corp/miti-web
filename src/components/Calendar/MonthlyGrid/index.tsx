@@ -1,63 +1,88 @@
-import React, { useMemo, useCallback } from 'react';
-import { _cs } from '@togglecorp/fujs';
+import { useMemo } from 'react';
+import {
+    _cs,
+    isDefined,
+    isTruthyString,
+} from '@togglecorp/fujs';
 
-import getMonthlyData, { DateInfo } from '#utils/monthly-data';
+import Tooltip from '#components/Tooltip';
 import { YearAndMonth } from '#utils/date-utils';
 import { translateNum } from '#utils/lang';
+import getMonthlyData, { DateInfo } from '#utils/monthly-data';
+
+import WeekNames from '../WeekNames';
 
 import styles from './styles.module.css';
 
-
-const DateElement: React.FC<{ dateInfo: DateInfo }> = ({ dateInfo }: { dateInfo: DateInfo }) => {
-    const showDateInfo = useCallback(() => {
-        alert(dateInfo.title);
-    }, [dateInfo]);
-
+function DateElement({ dateInfo }: { dateInfo: DateInfo }) {
     const className = _cs(
         styles.dateElement,
         dateInfo.holiday ? styles.holiday : '',
         dateInfo.isToday ? styles.today : '',
     );
 
+    const eventList = dateInfo.event?.split('/')?.map(
+        (eventItem) => eventItem.trim(),
+    ).filter((eventItem) => isTruthyString(eventItem) && eventItem !== '--');
+
+    const eventText = eventList?.join(', ');
+
     return (
         <div
             className={className}
             title={dateInfo.title}
-            onClick={showDateInfo}
-            role="button"
-            tabIndex={0}
-            onKeyPress={showDateInfo}
         >
+            <div className={styles.tithiAndDate}>
+                <div className={styles.tithi}>
+                    {dateInfo.tithi}
+                </div>
+                <div className={styles.englishDate}>
+                    {dateInfo.englishDate}
+                </div>
+            </div>
             <div className={styles.nepaliDate}>
                 {dateInfo.nepaliDate && translateNum(dateInfo.nepaliDate)}
             </div>
-            <div className={styles.englishDate}>
-                {dateInfo.englishDate}
+            <div
+                className={styles.event}
+                title={eventText}
+            >
+                {eventText}
             </div>
-            <div className={styles.tithi}>
-                {dateInfo.tithi}
-            </div>
-            <div className={styles.event}>
-                {dateInfo.event}
-            </div>
+            {isDefined(dateInfo.nepaliDate) && (
+                <Tooltip className={styles.tooltip}>
+                    <h2>
+                        {dateInfo.title}
+                    </h2>
+                    <div>
+                        {dateInfo.tithi}
+                    </div>
+                    {eventList && eventList.length > 0 && (
+                        <ul className={styles.eventList}>
+                            {eventList.map((eventItem) => (
+                                <li key={eventItem}>{eventItem}</li>
+                            ))}
+                        </ul>
+                    )}
+                </Tooltip>
+            )}
         </div>
     );
-};
+}
 
-const WeeklyRow: React.FC<{ dates: DateInfo[] }> = ({ dates }: { dates: DateInfo[] }) => (
-    <div className={styles.week}>
-        {dates.map(
-            (date) => <DateElement key={date.key} dateInfo={date} />
-        )}
-    </div>
-);
+function WeeklyRow({ dates }: { dates: DateInfo[] }) {
+    return dates.map(
+        (date) => <DateElement key={date.key} dateInfo={date} />,
+    );
+}
 
-interface PropTypes {
+interface Props {
     className?: string;
     yearAndMonth: YearAndMonth;
 }
 
-const MonthlyGrid: React.FC<PropTypes> = ({ className, yearAndMonth }: PropTypes) => {
+function MonthlyGrid(props: Props) {
+    const { className, yearAndMonth } = props;
     const monthlyData = useMemo(
         () => getMonthlyData(yearAndMonth.year, yearAndMonth.month),
         [yearAndMonth],
@@ -65,14 +90,15 @@ const MonthlyGrid: React.FC<PropTypes> = ({ className, yearAndMonth }: PropTypes
 
     return (
         <div className={_cs(className, styles.datesGrid)}>
-            {monthlyData.map((data, i) => (
+            <WeekNames />
+            {monthlyData.map(({ week, data }) => (
                 <WeeklyRow
-                    key={i}
+                    key={week}
                     dates={data}
                 />
             ))}
         </div>
     );
-};
+}
 
 export default MonthlyGrid;

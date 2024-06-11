@@ -1,33 +1,39 @@
 .header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    justify-content: space-between;
+    border-bottom: var(--width-separator-thin) solid var(--color-separator);
+    padding: var(--spacing-xl);
 
-    .middle {
+    .brand {
+        color: var(--color-primary-red);
+        font-size: var(--font-size-4xl);
+        font-weight: 700;
+    }
+
+    .month-and-year {
         text-align: center;
 
         .nepali-month {
-            font-size: 18px;
+            font-size: var(--font-size-2xl);
         }
 
         .english-month {
-            font-size: 16px;
+            font-size: var(--font-size-2xl);
         }
     }
 
-    .left {
-        text-align: center;
-        height: 100%;
-        width: 64px;
-        font-size: 16px;
-    }
+    .actions {
+        display: flex;
+        gap: var(--spacing-md);
 
-    .right {
-        text-align: center;
-        height: 100%;
-        width: 64px;
-        font-size: 16px;
+        .button {
+            padding: var(--spacing-sm);
+
+            .icon {
+                height: 1rem;
+            }
+        }
     }
 }
 

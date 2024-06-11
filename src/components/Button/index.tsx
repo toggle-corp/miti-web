@@ -1,5 +1,5 @@
-import { _cs } from "@togglecorp/fujs";
-import { useCallback } from "react";
+import { useCallback } from 'react';
+import { _cs } from '@togglecorp/fujs';
 
 import styles from './styles.module.css';
 
@@ -11,7 +11,6 @@ export interface Props<N> extends Omit<React.HTMLProps<HTMLButtonElement>, 'ref'
     type?: 'button' | 'submit' | 'reset';
     focused?: boolean;
 }
-
 
 function Button<Name>(props: Props<Name>) {
     const {

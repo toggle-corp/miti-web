@@ -1,5 +1,3 @@
-import { Navigate } from 'react-router-dom';
-
 import {
     MyInputIndexRouteObject,
     MyInputNonIndexRouteObject,
@@ -8,7 +6,6 @@ import {
     unwrapRoute,
     wrapRoute,
 } from '#utils/routes';
-
 import { Component as RootLayout } from '#views/RootLayout';
 
 import PageError from '../PageError';
