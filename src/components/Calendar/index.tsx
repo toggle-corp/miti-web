@@ -22,6 +22,7 @@ function Calendar() {
             month: today.month,
         };
     }, []);
+
     const [yearAndMonth, setYearAndMonth] = useState<YearAndMonth>(currentYearMonth);
 
     /*
