@@ -3,8 +3,11 @@
     align-items: center;
     justify-content: center;
     border: var(--width-separator-thin) solid var(--color-separator);
-    color: rgba(0, 0, 0, 0.6);
+    background-color: var(--color-gray-10);
+    padding: var(--spacing-md);
+    color: var(--color-text-light);
     font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
 
     &.holiday {
         color: var(--color-primary-red);

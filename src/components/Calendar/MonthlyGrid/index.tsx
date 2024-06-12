@@ -23,7 +23,7 @@ function DateElement({ dateInfo }: { dateInfo: DateInfo }) {
 
     const eventList = dateInfo.event?.split('/')?.map(
         (eventItem) => eventItem.trim(),
-    ).filter((eventItem) => isTruthyString(eventItem) && eventItem !== '--');
+    ).filter((eventItem) => isTruthyString(eventItem));
 
     const eventText = eventList?.join(', ');
 
@@ -89,14 +89,18 @@ function MonthlyGrid(props: Props) {
     );
 
     return (
-        <div className={_cs(className, styles.datesGrid)}>
-            <WeekNames />
-            {monthlyData.map(({ week, data }) => (
-                <WeeklyRow
-                    key={week}
-                    dates={data}
-                />
-            ))}
+        <div className={_cs(className, styles.monthlyGrid)}>
+            <div className={styles.weekNames}>
+                <WeekNames />
+            </div>
+            <div className={styles.datesGrid}>
+                {monthlyData.map(({ week, data }) => (
+                    <WeeklyRow
+                        key={week}
+                        dates={data}
+                    />
+                ))}
+            </div>
         </div>
     );
 }
