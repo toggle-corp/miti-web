@@ -19,13 +19,13 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '18.x'
-          cache: 'yarn'
+          cache: 'pnpm'
 
       - name: Install dependencies
-        run: yarn install --prefer-online
+        run: pnpm install
 
       - name: Run unimported
-        run: yarn lint:unused
+        run: pnpm lint:unused
   lint:
     name: Lint JS
     runs-on: ubuntu-latest
@@ -34,13 +34,13 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '18.x'
-          cache: 'yarn'
+          cache: 'pnpm'
 
       - name: Install dependencies
-        run: yarn install --prefer-online
+        run: pnpm install
 
       - name: Lint
-        run: yarn lint:js
+        run: pnpm lint:js
   css-lint:
     name: Lint CSS
     runs-on: ubuntu-latest
@@ -49,13 +49,13 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '18.x'
-          cache: 'yarn'
+          cache: 'pnpm'
 
       - name: Install dependencies
-        run: yarn install --prefer-online
+        run: pnpm install
 
       - name: Css Lint
-        run: yarn lint:css
+        run: pnpm lint:css
   typecheck:
     name: Typecheck
     runs-on: ubuntu-latest
@@ -64,13 +64,13 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '18.x'
-          cache: 'yarn'
+          cache: 'pnpm'
 
       - name: Install dependencies
-        run: yarn install --prefer-online
+        run: pnpm install
 
       - name: Typecheck
-        run: yarn typecheck
+        run: pnpm typecheck
   build:
     name: Build
     needs: [lint, css-lint, typecheck]
@@ -80,10 +80,10 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '18.x'
-          cache: 'yarn'
+          cache: 'pnpm'
 
       - name: Install dependencies
-        run: yarn install --prefer-online
+        run: pnpm install
 
       - name: Build
-        run: yarn build
+        run: pnpm build
