@@ -7,7 +7,7 @@
     .date-element {
         position: relative;
         border: var(--width-separator-thin) solid var(--color-separator);
-        padding: var(--spacing-md);
+        padding: var(--spacing-sm);
         overflow: auto;
 
         &:hover {

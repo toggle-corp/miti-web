@@ -1,6 +1,6 @@
 {
     "name": "miti-web",
-    "version": "2.0.0",
+    "version": "1.0.0",
     "type": "module",
     "private": true,
     "scripts": {
@@ -13,12 +13,10 @@
         "lint:fix": "yarn lint:js --fix && yarn lint:css --fix",
         "test": "vitest",
         "test:coverage": "vitest run --coverage",
-        "typecheck": "tsc",
-        "postinstall": "patch-package"
+        "typecheck": "tsc"
     },
     "dependencies": {
         "@togglecorp/fujs": "^2.1.1",
-        "patch-package": "^8.0.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "react-router-dom": "^6.22.3"
@@ -35,8 +33,6 @@
         "@vitejs/plugin-react-swc": "^3.5.0",
         "@vitest/coverage-v8": "^1.2.2",
         "autoprefixer": "^10.4.19",
-        "cross-var": "^1.1.0",
-        "dotenv-cli": "^7.2.1",
         "eslint": "^8.40.0",
         "eslint-config-airbnb": "^19.0.4",
         "eslint-import-resolver-typescript": "^3.5.5",
@@ -54,23 +50,17 @@
         "postcss-nested": "^6.0.1",
         "postcss-normalize": "^10.0.1",
         "postcss-preset-env": "^9.5.2",
-        "postinstall-postinstall": "^2.1.0",
-        "rollup-plugin-visualizer": "^5.9.0",
         "stylelint": "^15.11.0",
         "stylelint-config-concentric": "^2.0.2",
         "stylelint-config-concentric-order": "^5.2.0",
         "stylelint-config-recommended": "^14.0.0",
         "stylelint-no-unused-selectors": "git+https://github.com/toggle-corp/stylelint-no-unused-selectors#e0831e1",
         "stylelint-value-no-unknown-custom-properties": "^5.0.0",
-        "surge": "^0.23.1",
-        "ts-node": "^10.9.2",
         "typescript": "^5.4.5",
         "unimported": "1.31.1",
         "vite": "^5.2.6",
         "vite-plugin-checker": "^0.6.2",
         "vite-plugin-compression2": "^1.0.0",
-        "vite-plugin-radar": "^0.9.2",
-        "vite-plugin-svgr": "^4.2.0",
         "vite-plugin-webfont-dl": "3.9.2",
         "vite-tsconfig-paths": "^4.2.2",
         "vitest": "^1.1.0"

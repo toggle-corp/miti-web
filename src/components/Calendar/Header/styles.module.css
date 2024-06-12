@@ -3,7 +3,7 @@
     align-items: center;
     justify-content: space-between;
     border-bottom: var(--width-separator-thin) solid var(--color-separator);
-    padding: var(--spacing-xl);
+    padding: var(--spacing-md);
 
     .brand {
         color: var(--color-primary-red);
