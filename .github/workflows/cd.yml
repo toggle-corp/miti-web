@@ -17,38 +17,36 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: '18.x'
 
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
-
-      - uses: actions/cache@v3
-        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
         with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
+          run_install: false
 
-      - name: Run yarn install
-        run: yarn install
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - name: Run pnpm install
+        run: pnpm install
 
       - name: Build + Test
-        run: yarn build
+        run: pnpm build
 
       - name: Upload GH artifacts
         uses: actions/upload-pages-artifact@v1
         with:
-          path: out/
+          path: build/
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
-          path: out/
+          path: build/
           name: client-build
 
   prod_deploy:
