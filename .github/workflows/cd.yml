@@ -43,12 +43,12 @@ jobs:
       - name: Upload GH artifacts
         uses: actions/upload-pages-artifact@v1
         with:
-          path: out/
+          path: build/
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
-          path: out/
+          path: build/
           name: client-build
 
   prod_deploy:
