@@ -1,18 +1,22 @@
-import React, { useCallback, useMemo } from 'react';
-import { _cs } from '@togglecorp/fujs';
-import Button from '#rsca/Button';
-import Icon from '#rscg/Icon';
-
 import {
-    NepaliDate,
+    useCallback,
+    useMemo,
+} from 'react';
+import { _cs } from '@togglecorp/fujs';
+
+import chevronLeftIcon from '#assets/chevron-left.svg';
+import chevronRightIcon from '#assets/chevron-right.svg';
+import Button from '#components/Button';
+import {
     EnglishDate,
-    YearAndMonth,
-    START_NEPALI_YEAR,
+    NepaliDate,
     NUM_YEARS,
+    START_NEPALI_YEAR,
+    YearAndMonth,
 } from '#utils/date-utils';
 import { translateNum } from '#utils/lang';
-import styles from './styles.scss';
 
+import styles from './styles.module.css';
 
 interface PropTypes {
     className?: string;
@@ -38,11 +42,11 @@ const MONTH_NAMES = [
     'चैत्र',
 ];
 
-const Header: React.FC<PropTypes> = ({
+function Header({
     className,
     setYearAndMonth,
     yearAndMonth,
-}: PropTypes) => {
+}: PropTypes) {
     const monthId = yearAndMonth.year * 12 + (yearAndMonth.month - 1);
     const showPrevious = monthId > STARTING_MONTH;
     const showNext = monthId < ENDING_MONTH;
@@ -54,7 +58,7 @@ const Header: React.FC<PropTypes> = ({
         const month = (newMonthId % 12) + 1;
 
         setYearAndMonth({ year, month });
-    }, [yearAndMonth, setYearAndMonth]);
+    }, [setYearAndMonth, monthId]);
 
     // Go to next month.
     const goToNext = useCallback(() => {
@@ -63,7 +67,7 @@ const Header: React.FC<PropTypes> = ({
         const month = (newMonthId % 12) + 1;
 
         setYearAndMonth({ year, month });
-    }, [yearAndMonth, setYearAndMonth]);
+    }, [setYearAndMonth, monthId]);
 
     // Nepali month-year title to display.
     const nepaliMonth: string = useMemo(() => {
@@ -96,17 +100,10 @@ const Header: React.FC<PropTypes> = ({
 
     return (
         <div className={_cs(className, styles.header)}>
-            {showPrevious && (
-                <Button
-                    className={styles.left}
-                    onClick={goToPrev}
-                    transparent
-                >
-                    <Icon name="chevronLeft" />
-                </Button>
-            )}
-
-            <div className={styles.middle}>
+            <div className={styles.brand}>
+                मिति
+            </div>
+            <div className={styles.monthAndYear}>
                 <div className={styles.nepaliMonth}>
                     {nepaliMonth}
                 </div>
@@ -114,18 +111,34 @@ const Header: React.FC<PropTypes> = ({
                     {englishMonth}
                 </div>
             </div>
-
-            {showNext && (
+            <div className={styles.actions}>
                 <Button
-                    className={styles.right}
-                    onClick={goToNext}
-                    transparent
+                    name={undefined}
+                    className={styles.button}
+                    onClick={goToPrev}
+                    disabled={!showPrevious}
                 >
-                    <Icon name="chevronRight" />
+                    <img
+                        className={styles.icon}
+                        src={chevronLeftIcon}
+                        alt="<"
+                    />
                 </Button>
-            )}
+                <Button
+                    name={undefined}
+                    className={styles.button}
+                    onClick={goToNext}
+                    disabled={!showNext}
+                >
+                    <img
+                        className={styles.icon}
+                        src={chevronRightIcon}
+                        alt=">"
+                    />
+                </Button>
+            </div>
         </div>
     );
-};
+}
 
 export default Header;

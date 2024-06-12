@@ -1,6 +1,20 @@
+import './index.css';
+
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 
-import Root from './Root';
+import App from './App';
 
-ReactDOM.render(<Root />, document.getElementById('miti-root'));
+const webappRootId = 'webapp-root';
+const webappRootElement = document.getElementById(webappRootId);
+
+if (webappRootElement) {
+    ReactDOM.createRoot(webappRootElement).render(
+        <React.StrictMode>
+            <App />
+        </React.StrictMode>,
+    );
+} else {
+    // eslint-disable-next-line no-console
+    console.error(`Could not find html element with id '${webappRootId}'`);
+}

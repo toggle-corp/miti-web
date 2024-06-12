@@ -1,0 +1,72 @@
+name: CD
+
+on:
+  push:
+    # NOTE: Don't add other branches
+    branches:
+      - release
+
+env:
+  APP_TITLE: Miti
+  GITHUB_WORKFLOW: true
+
+jobs:
+  test_build:
+    if: github.event_name == 'push'
+    name: Run Tests + Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
+
+      - uses: actions/cache@v3
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Run yarn install
+        run: yarn install
+
+      - name: Build + Test
+        run: yarn build
+
+      - name: Upload GH artifacts
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: out/
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          path: out/
+          name: client-build
+
+  prod_deploy:
+    name: Deploy
+    needs: test_build
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+
+    permissions:
+      contents: write
+      id-token: write
+      pages: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages 🚀
+        id: deployment
+        uses: actions/deploy-pages@v2

@@ -1,3 +1,5 @@
+/* eslint-disable max-classes-per-file */
+
 export interface YearAndMonth {
     year: number;
     month: number;
@@ -102,7 +104,6 @@ export const START_ENGLISH_YEAR = 1943;
 export const START_ENGLISH_MONTH = 4;
 export const START_ENGLISH_DAY = 14;
 export const NUM_YEARS = NEPALI_DAYS_PER_MONTH.length;
-
 
 class BaseDate {
     public year: number;

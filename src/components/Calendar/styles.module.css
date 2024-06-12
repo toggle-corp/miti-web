@@ -1,0 +1,10 @@
+.calendar {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    height: 100%;
+
+    .week-names {
+        padding: var(--spacing-md);
+    }
+}
