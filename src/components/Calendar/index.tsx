@@ -33,6 +33,10 @@ function Calendar() {
 
     return (
         <div className={styles.calendar}>
+            <div className={styles.disclaimer}>
+                This calendar is still in experimental phase!
+                Please be aware that the dates might be incorrect!
+            </div>
             <Header
                 className={styles.header}
                 setYearAndMonth={setYearAndMonth}
