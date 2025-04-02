@@ -39,15 +39,10 @@ jobs:
         run: pnpm build
 
       - name: Upload GH artifacts
-        uses: actions/upload-pages-artifact@v1
+        id: deployment
+        uses: actions/upload-pages-artifact@v3
         with:
           path: build/
-
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          path: build/
-          name: client-build
 
   prod_deploy:
     name: Deploy
@@ -67,4 +62,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages 🚀
         id: deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v4
